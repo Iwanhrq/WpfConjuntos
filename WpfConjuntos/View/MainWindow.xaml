@@ -1,0 +1,47 @@
+﻿<Window x:Class="WpfConjuntos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfConjuntos"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="550">
+    <Grid>
+
+
+
+        <!-- Conjunto A -->
+        <Label Content="Conjunto A" HorizontalAlignment="Left" Height="27" Margin="32,55,0,0" VerticalAlignment="Top" Width="71"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="32,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
+        <Button x:Name="addConjuntoA" Content="+" HorizontalAlignment="Left" Height="23" Margin="203,82,0,0" VerticalAlignment="Top" Width="25"/>
+        <Button x:Name="removeConjuntoA" Content="-" HorizontalAlignment="Left" Height="23" Margin="233,82,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.387,0.509"/>
+        <ListBox x:Name="listA" HorizontalAlignment="Left" Height="78" Margin="32,110,0,0" VerticalAlignment="Top" Width="223" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="limparA" Content="Limpar" HorizontalAlignment="Left" Height="23" Margin="32,193,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.387,0.509" Click="limparA_Click"/>
+        <Button x:Name="randomA" Content="Random" HorizontalAlignment="Left" Height="23" Margin="97,193,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.387,0.509" Click="limparA_Click"/>
+
+
+        <!-- Conjunto B -->
+        <Label Content="Conjunto B" HorizontalAlignment="Left" Height="27" Margin="294,55,0,0" VerticalAlignment="Top" Width="71"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="294,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
+        <Button x:Name="addConjuntoB" Content="+" HorizontalAlignment="Left" Height="23" Margin="466,82,0,0" VerticalAlignment="Top" Width="25"/>
+        <Button x:Name="removeConjuntoB" Content="-" HorizontalAlignment="Left" Height="23" Margin="496,82,0,0" VerticalAlignment="Top" Width="25" RenderTransformOrigin="0.387,0.509"/>
+        <ListBox x:Name="listB" HorizontalAlignment="Left" Height="78" Margin="294,110,0,0" VerticalAlignment="Top" Width="227" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <Button x:Name="limparB" Content="Limpar" HorizontalAlignment="Left" Height="23" Margin="294,193,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.387,0.509" Click="limparB_Click"/>
+        <Button x:Name="randomB" Content="Random" HorizontalAlignment="Left" Height="23" Margin="359,193,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.387,0.509" Click="limparA_Click"/>
+
+
+        <!-- Operações -->
+        <Button Content="∪" HorizontalAlignment="Left" Height="28" Margin="173,253,0,0" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.08,-0.058" Click="Uniao_Click"/>
+        <Button Content="∩" HorizontalAlignment="Left" Height="28" Margin="223,253,0,0" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.08,-0.058" Click="Interseccao_Click"/>
+        <Button Content="A - B" HorizontalAlignment="Left" Height="28" Margin="268,253,0,0" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.08,-0.058" Click="DiferencaAB_Click"/>
+        <Button Content="B - A" HorizontalAlignment="Left" Height="28" Margin="317,253,0,0" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.08,-0.058" Click="DiferençaBA_Click"/>
+
+        <!-- Resultado -->
+        <TextBlock x:Name="txtResultado" HorizontalAlignment="Left" Height="23" Margin="173,286,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="181"/>
+
+
+
+
+
+    </Grid>
+</Window>
