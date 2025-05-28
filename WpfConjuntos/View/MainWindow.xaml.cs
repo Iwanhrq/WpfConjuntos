@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfConjuntos.Model;
 
 
 
@@ -160,33 +161,36 @@ namespace WpfConjuntos
 
 
 
+
+        // Operações
         private void Uniao_Click(object sender, RoutedEventArgs e)
         {
-
+            var resultado = Operacoes.Uniao(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
+                                        .OrderBy(x => x);
+            txt_Resultado.Text = "A ∪ B \n{" + string.Join(", ", resultado) + "}";
         }
 
         private void Interseccao_Click(object sender, RoutedEventArgs e)
         {
-
+            var resultado = Operacoes.Interseccao(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
+                                                 .OrderBy(x => x);
+            txt_Resultado.Text = "A ∩ B \n{" + string.Join(", ", resultado) + "}";
         }
 
         private void DiferencaAB_Click(object sender, RoutedEventArgs e)
         {
-
+            var resultado = Operacoes.DiferencaAB(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
+                                            .OrderBy(x => x);
+            txt_Resultado.Text = "A - B \n{" + string.Join(", ", resultado) + "}";
         }
 
         private void DiferençaBA_Click(object sender, RoutedEventArgs e)
         {
-
+            var resultado = Operacoes.DiferencaBA(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
+                                            .OrderBy(x => x);
+            txt_Resultado.Text = "B - A \n{" + string.Join(", ", resultado) + "}";
         }
 
-
-
-
-
-
-
-        // Operações
 
 
     }
