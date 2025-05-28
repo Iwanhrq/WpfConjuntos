@@ -87,15 +87,12 @@ namespace WpfConjuntos
         private void btn_randomA_Click(object sender, RoutedEventArgs e)
         {
             Random random = new Random();
-            int quantidadeAleatoria = random.Next(1, 21); //gera um número entre (e inclusive) 1 e 20
+            int quantidadeAleatoria = random.Next(1, 20); //gera um número entre (e inclusive) 1 e 19
 
             conjuntoA.addAleatorios(quantidadeAleatoria);
 
-            MessageBox.Show($"Adicionando {quantidadeAleatoria} números aleatórios ao conjunto A.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
-
-
 
 
 
@@ -155,7 +152,6 @@ namespace WpfConjuntos
 
             conjuntoB.addAleatorios(quantidadeAleatoria);
 
-            MessageBox.Show($"Adicionando {quantidadeAleatoria} números aleatórios ao conjunto B.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 

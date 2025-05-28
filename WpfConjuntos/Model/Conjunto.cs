@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfConjuntos
@@ -99,13 +100,15 @@ namespace WpfConjuntos
         public void addAleatorios(int quantidadeAleatoria)
         {
             Random random = new Random(); //gerador de numeros aleatórios
+            int adicionados = 0;
 
-            
-            for(int i = 0; i < quantidadeAleatoria; i++) 
+
+            for (int i = 0; i < quantidadeAleatoria; i++) 
             {
-                if(elementos.Count > limite) //quando atinge a quantidadeAleatoria (quantidade de numeros), ele para de adicionar
+                if(elementos.Count >= limite) //quando atinge a quantidadeAleatoria (quantidade de numeros), ele para de adicionar
                 {
                     break;
+
                 }
 
                 int numero;
@@ -120,11 +123,26 @@ namespace WpfConjuntos
 
                 elementos.Add(numero);
                 listBox.Items.Add(numero);
+                adicionados++;
 
 
             }
 
-            
+
+            // Primeiro mostra quantos foram adicionados (se algum)
+            if (adicionados > 0)
+            {
+                MessageBox.Show($"Adicionados {adicionados} número(s) aleatório(s) ao conjunto.", "Sucesso", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            // Depois avisa se atingiu o limite
+            if (elementos.Count >= limite)
+            {
+                MessageBox.Show("O conjunto atingiu o limite de 20 elementos.", "Limite atingido", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
+
         }
 
 
