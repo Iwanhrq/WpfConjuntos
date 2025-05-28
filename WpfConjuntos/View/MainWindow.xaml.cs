@@ -20,28 +20,93 @@ namespace WpfConjuntos
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Conjunto conjuntoA;
+        private Conjunto conjuntoB;
+
+
         public MainWindow()
         {
             InitializeComponent();
+            conjuntoA = new Conjunto(listA);
+            conjuntoB = new Conjunto(listB);
         }
 
       
+        // Conjunto A
         private void addConjuntoA_Click(object sender, RoutedEventArgs e)
         {
+            string entrada = txt_numA.Text.Trim(); 
+            // .Trim serve para remover espaços em branco no ínicio ou no final do texto
+            // serve para caso o usuário insira um numero e um espaço a mais.  Ex: "89 "
 
+            if (!string.IsNullOrEmpty(entrada))
+            {
+                if (conjuntoA.Adicionar(entrada, out string erro))
+                {
+                    txt_numA.Clear();
+                }
+                else
+                {
+                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
-        private void addConjuntoB_Click(object sender, RoutedEventArgs e)
+
+        private void limparA_Click(object sender, RoutedEventArgs e)
         {
-
+            conjuntoA.LimparConjunto();
         }
+
+
         private void removeConjuntoA_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+
+
+
+
+
+
+
+
+        // Conjunto B
+        private void addConjuntoB_Click(object sender, RoutedEventArgs e)
+        {
+            string entrada = txt_numB.Text.Trim(); 
+
+            if (!string.IsNullOrEmpty(entrada))
+            {
+                if (conjuntoB.Adicionar(entrada, out string erro))
+                {
+                    txt_numB.Clear();
+                }
+                else
+                {
+                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        private void limparB_Click(object sender, RoutedEventArgs e)
+        {
+            conjuntoB.LimparConjunto();
+        }
+
+
+
+
         private void removeConjuntoB_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+
+
+
+
+        // Operações
         private void Uniao_Click(object sender, RoutedEventArgs e)
         {
 
@@ -61,12 +126,18 @@ namespace WpfConjuntos
 
         }
 
-        private void limparA_Click(object sender, RoutedEventArgs e)
+       
+
+       
+
+
+        //remover depois
+        private void addConjuntoA_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void limparB_Click(object sender, RoutedEventArgs e)
+        private void removeConjuntoB_Click_1(object sender, RoutedEventArgs e)
         {
 
         }
