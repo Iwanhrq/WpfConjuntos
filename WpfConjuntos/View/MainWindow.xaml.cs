@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+
 namespace WpfConjuntos
 {
     /// <summary>
@@ -33,7 +35,7 @@ namespace WpfConjuntos
 
       
         // Conjunto A
-        private void addConjuntoA_Click(object sender, RoutedEventArgs e)
+        private void btn_addConjuntoA_Click(object sender, RoutedEventArgs e)
         {
             string entrada = txt_numA.Text.Trim(); 
             // .Trim serve para remover espaços em branco no ínicio ou no final do texto
@@ -52,18 +54,45 @@ namespace WpfConjuntos
             }
         }
 
-        private void limparA_Click(object sender, RoutedEventArgs e)
+        private void btn_limparA_Click(object sender, RoutedEventArgs e)
         {
             conjuntoA.LimparConjunto();
         }
 
 
-        private void removeConjuntoA_Click(object sender, RoutedEventArgs e)
+        private void btn_removeElementoA_Click(object sender, RoutedEventArgs e)
         {
+            string entrada = txt_numA.Text.Trim();
 
+            if (string.IsNullOrEmpty(entrada))
+            {
+                MessageBox.Show("Digite um valor antes de tentar remover.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                if (conjuntoA.RemoverElemento(entrada, out string erro))
+                {
+                    txt_numA.Clear();
+                }
+                else
+                {
+                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
         }
 
 
+
+        private void btn_randomA_Click(object sender, RoutedEventArgs e)
+        {
+            Random random = new Random();
+            int quantidadeAleatoria = random.Next(1, 21); //gera um número entre (e inclusive) 1 e 20
+
+            conjuntoA.addAleatorios(quantidadeAleatoria);
+
+            MessageBox.Show($"Adicionando {quantidadeAleatoria} números aleatórios ao conjunto A.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
 
 
 
@@ -72,7 +101,7 @@ namespace WpfConjuntos
 
 
         // Conjunto B
-        private void addConjuntoB_Click(object sender, RoutedEventArgs e)
+        private void btn_addConjuntoB_Click(object sender, RoutedEventArgs e)
         {
             string entrada = txt_numB.Text.Trim(); 
 
@@ -89,7 +118,7 @@ namespace WpfConjuntos
             }
         }
 
-        private void limparB_Click(object sender, RoutedEventArgs e)
+        private void btn_limparB_Click(object sender, RoutedEventArgs e)
         {
             conjuntoB.LimparConjunto();
         }
@@ -97,20 +126,45 @@ namespace WpfConjuntos
 
 
 
-        private void removeConjuntoB_Click(object sender, RoutedEventArgs e)
+        private void btn_removeElementoB_Click(object sender, RoutedEventArgs e)
         {
+            string entrada = txt_numB.Text.Trim();
+
+            if (string.IsNullOrEmpty(entrada))
+            {
+                MessageBox.Show("Digite um valor antes de tentar remover.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                if (conjuntoB.RemoverElemento(entrada, out string erro))
+                {
+                    txt_numB.Clear();
+                }
+                else
+                {
+                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        }
+
+        private void btn_randomB_Click(object sender, RoutedEventArgs e)
+        {
+            Random random = new Random();
+            int quantidadeAleatoria = random.Next(1, 21); //gera um número entre (e inclusive) 1 e 20
+
+            conjuntoB.addAleatorios(quantidadeAleatoria);
+
+            MessageBox.Show($"Adicionando {quantidadeAleatoria} números aleatórios ao conjunto B.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
 
 
-
-
-        // Operações
         private void Uniao_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
         private void Interseccao_Click(object sender, RoutedEventArgs e)
         {
 
@@ -126,20 +180,14 @@ namespace WpfConjuntos
 
         }
 
-       
-
-       
 
 
-        //remover depois
-        private void addConjuntoA_Click_1(object sender, RoutedEventArgs e)
-        {
 
-        }
 
-        private void removeConjuntoB_Click_1(object sender, RoutedEventArgs e)
-        {
 
-        }
+
+        // Operações
+
+
     }
 }
