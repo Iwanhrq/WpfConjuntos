@@ -30,13 +30,13 @@ namespace WpfConjuntos
             mensagemErro = null;
 
             //se o numero não for inteiro
-            if(!int.TryParse(entrada, out int numero))
+            if (!int.TryParse(entrada, out int numero))
             {
                 mensagemErro = "Apenas números inteiros podem ser adicionados.";
                 return false;
             }
 
-            if(elementos.Contains(numero)) //verifica se o numero já existe no conjunto
+            if (elementos.Contains(numero)) //verifica se o numero já existe no conjunto
             {
                 mensagemErro = "O número já existe no conjunto.";
                 return false;
@@ -57,18 +57,25 @@ namespace WpfConjuntos
 
 
 
-        public void LimparConjunto () 
+        public bool LimparConjunto()
         {
+            if (elementos.Count == 0)
+            {
+                return false; // já está vazio
+            }
+
             elementos.Clear();
             listBox.Items.Clear();
+            return true;
         }
+
 
 
         public bool RemoverElemento(string entrada, out string mensagemErro)
         {
-            mensagemErro= null;
+            mensagemErro = null;
 
-            
+
             if (int.TryParse(entrada, out int numero)) //confere se é numero inteiro
             {
                 if (elementos.Contains(numero)) //verifica se o numero está na lista
@@ -109,9 +116,9 @@ namespace WpfConjuntos
             int adicionados = 0;
 
 
-            for (int i = 0; i < 20; i++) 
+            for (int i = 0; i < 20; i++)
             {
-                if(elementos.Count >= limite) //quando atinge a quantidadeAleatoria (quantidade de numeros), ele para de adicionar
+                if (elementos.Count >= limite) //quando atinge a quantidadeAleatoria (quantidade de numeros), ele para de adicionar
                 {
                     break;
                 }
@@ -123,7 +130,7 @@ namespace WpfConjuntos
                 {
                     numero = random.Next(1, 101); //gera um numero entre 1 e 100
                 }
-                while (elementos.Contains(numero)); 
+                while (elementos.Contains(numero));
 
 
                 elementos.Add(numero);

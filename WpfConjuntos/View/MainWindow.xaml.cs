@@ -93,7 +93,11 @@ namespace WpfConjuntos
 
         private void btn_limparA_Click(object sender, RoutedEventArgs e)
         {
-            conjuntoA.LimparConjunto();
+            if (!conjuntoA.LimparConjunto())
+            {
+                MessageBox.Show("Não há nenhum número no conjunto A.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            txt_Resultado.Text = " ";
         }
 
         private void btn_randomA_Click(object sender, RoutedEventArgs e)
@@ -161,8 +165,13 @@ namespace WpfConjuntos
 
         private void btn_limparB_Click(object sender, RoutedEventArgs e)
         {
-            conjuntoB.LimparConjunto();
+            if (!conjuntoB.LimparConjunto())
+            {
+                MessageBox.Show("Não há nenhum número no conjunto B.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            txt_Resultado.Text = " ";
         }
+
 
         private void btn_randomB_Click(object sender, RoutedEventArgs e)
         {
@@ -200,7 +209,28 @@ namespace WpfConjuntos
             txt_Resultado.Text = "B - A \n{" + string.Join(", ", resultado) + "}";
         }
 
+        private async void btnTeste_Click(object sender, RoutedEventArgs e)
+        // aqui é utilizado o async/await para permitir que a interface do usuário continue responsiva durante a execução dos testes
+        {
+            btnTeste.IsEnabled = false;
+            progressoTestes.Value = 0;
+            progressoTestes.Maximum = 100;
 
+            Testes testes = new Testes();
+            var resultados = testes.RunAllTests();
 
+            int total = resultados.Count;
+            for (int i = 0; i < total; i++)
+            {
+                progressoTexto.Content = resultados[i];
+                progressoTestes.Value = ((i + 1) * 100) / total;
+
+                await Task.Delay(1000); // delay para ver o progresso dos testes
+
+            }
+
+            progressoTexto.Content = "Testes concluídos!";
+            btnTeste.IsEnabled = true;
+        }
     }
 }
