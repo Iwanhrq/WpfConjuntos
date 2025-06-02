@@ -34,24 +34,60 @@ namespace WpfConjuntos
             conjuntoB = new Conjunto(listB);
         }
 
-      
+
         // Conjunto A
         private void btn_addConjuntoA_Click(object sender, RoutedEventArgs e)
         {
-            string entrada = txt_numA.Text.Trim(); 
-            // .Trim serve para remover espaços em branco no ínicio ou no final do texto
-            // serve para caso o usuário insira um numero e um espaço a mais.  Ex: "89 "
-
-            if (!string.IsNullOrEmpty(entrada))
+            try
             {
-                if (conjuntoA.Adicionar(entrada, out string erro))
+                string entrada = txt_numA.Text.Trim();
+                // .Trim serve para remover espaços em branco no ínicio ou no final do texto
+                // serve para caso o usuário insira um numero e um espaço a mais.  Ex: "89 "
+
+                if (!string.IsNullOrEmpty(entrada))
                 {
-                    txt_numA.Clear();
+                    if (conjuntoA.Adicionar(entrada, out string erro))
+                    {
+                        txt_numA.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao adicionar no conjunto A: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void btn_removeElementoA_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string entrada = txt_numA.Text.Trim();
+
+                if (string.IsNullOrEmpty(entrada))
+                {
+                    MessageBox.Show("Digite um valor antes de tentar remover.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    if (conjuntoA.RemoverElemento(entrada, out string erro))
+                    {
+                        txt_numA.Clear();
+                    }
+
+                    else
+                    {
+                        MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao remover do conjunto A: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -60,59 +96,66 @@ namespace WpfConjuntos
             conjuntoA.LimparConjunto();
         }
 
-
-        private void btn_removeElementoA_Click(object sender, RoutedEventArgs e)
-        {
-            string entrada = txt_numA.Text.Trim();
-
-            if (string.IsNullOrEmpty(entrada))
-            {
-                MessageBox.Show("Digite um valor antes de tentar remover.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                if (conjuntoA.RemoverElemento(entrada, out string erro))
-                {
-                    txt_numA.Clear();
-                }
-                else
-                {
-                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-        }
-
-
-
         private void btn_randomA_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
-            int quantidadeAleatoria = random.Next(1, 20); //gera um número entre (e inclusive) 1 e 19
-
-            conjuntoA.addAleatorios(quantidadeAleatoria);
-
+            conjuntoA.addAleatorios();
 
         }
-
-
-
 
 
         // Conjunto B
         private void btn_addConjuntoB_Click(object sender, RoutedEventArgs e)
         {
-            string entrada = txt_numB.Text.Trim(); 
-
-            if (!string.IsNullOrEmpty(entrada))
+            try
             {
-                if (conjuntoB.Adicionar(entrada, out string erro))
+                string entrada = txt_numB.Text.Trim();
+
+                if (!string.IsNullOrEmpty(entrada))
                 {
-                    txt_numB.Clear();
+                    if (conjuntoB.Adicionar(entrada, out string erro))
+                    {
+                        txt_numB.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro ao adicionar no conjunto B: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            }
+        }
+        private void btn_removeElementoB_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                string entrada = txt_numB.Text.Trim();
+
+                if (string.IsNullOrEmpty(entrada))
+                {
+                    MessageBox.Show("Digite um valor antes de tentar remover.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    if (conjuntoB.RemoverElemento(entrada, out string erro))
+                    {
+                        txt_numB.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao remover do conjunto B: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -121,40 +164,10 @@ namespace WpfConjuntos
             conjuntoB.LimparConjunto();
         }
 
-
-
-
-        private void btn_removeElementoB_Click(object sender, RoutedEventArgs e)
-        {
-            string entrada = txt_numB.Text.Trim();
-
-            if (string.IsNullOrEmpty(entrada))
-            {
-                MessageBox.Show("Digite um valor antes de tentar remover.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                if (conjuntoB.RemoverElemento(entrada, out string erro))
-                {
-                    txt_numB.Clear();
-                }
-                else
-                {
-                    MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
-            }
-        }
-
         private void btn_randomB_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
-            int quantidadeAleatoria = random.Next(1, 21); //gera um número entre (e inclusive) 1 e 20
-
-            conjuntoB.addAleatorios(quantidadeAleatoria);
-
-
+            conjuntoB.addAleatorios();
         }
-
 
 
 

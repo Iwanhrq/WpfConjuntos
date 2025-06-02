@@ -29,10 +29,16 @@ namespace WpfConjuntos
         {
             mensagemErro = null;
 
-            //se o numero não foir inteiro
+            //se o numero não for inteiro
             if(!int.TryParse(entrada, out int numero))
             {
                 mensagemErro = "Apenas números inteiros podem ser adicionados.";
+                return false;
+            }
+
+            if(elementos.Contains(numero)) //verifica se o numero já existe no conjunto
+            {
+                mensagemErro = "O número já existe no conjunto.";
                 return false;
             }
 
@@ -97,18 +103,17 @@ namespace WpfConjuntos
 
 
 
-        public void addAleatorios(int quantidadeAleatoria)
+        public void addAleatorios()
         {
             Random random = new Random(); //gerador de numeros aleatórios
             int adicionados = 0;
 
 
-            for (int i = 0; i < quantidadeAleatoria; i++) 
+            for (int i = 0; i < 20; i++) 
             {
                 if(elementos.Count >= limite) //quando atinge a quantidadeAleatoria (quantidade de numeros), ele para de adicionar
                 {
                     break;
-
                 }
 
                 int numero;
