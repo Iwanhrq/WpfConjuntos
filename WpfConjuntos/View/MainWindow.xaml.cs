@@ -41,8 +41,7 @@ namespace WpfConjuntos
             try
             {
                 string entrada = txt_numA.Text.Trim();
-                // .Trim serve para remover espaços em branco no ínicio ou no final do texto
-                // serve para caso o usuário insira um numero e um espaço a mais.  Ex: "89 "
+                // .Trim remove espaços em branco no início ou fim
 
                 if (!string.IsNullOrEmpty(entrada))
                 {
@@ -55,13 +54,17 @@ namespace WpfConjuntos
                         MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Digite um valor antes de tentar adicionar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao adicionar no conjunto A: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void btn_removeElementoA_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -125,14 +128,17 @@ namespace WpfConjuntos
                         MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
-
+                else
+                {
+                    MessageBox.Show("Digite um valor antes de tentar adicionar.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Erro ao adicionar no conjunto B: " + ex.Message, "Erro", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
         }
+
         private void btn_removeElementoB_Click(object sender, RoutedEventArgs e)
         {
             try
