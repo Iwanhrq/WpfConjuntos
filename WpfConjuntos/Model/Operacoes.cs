@@ -16,7 +16,7 @@ namespace WpfConjuntos.Model
         }
 
 
-        // Interseção A ∩eB
+        // Intersecção A ∩ B
         public static List<int> Interseccao(List<int> A, List<int> B)
         {
             return A.Intersect(B).ToList();
