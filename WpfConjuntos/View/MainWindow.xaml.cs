@@ -14,8 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfConjuntos.Model;
 
-
-
 namespace WpfConjuntos
 {
     /// <summary>
