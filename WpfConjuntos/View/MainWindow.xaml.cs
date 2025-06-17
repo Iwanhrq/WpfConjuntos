@@ -1,35 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WpfConjuntos.Model;
 
 namespace WpfConjuntos
 {
     /// <summary>
-    /// Interação lógica para MainWindow.xam
+    /// Interação lógica para MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
         private Conjunto conjuntoA;
         private Conjunto conjuntoB;
 
-
         public MainWindow()
         {
             InitializeComponent();
             conjuntoA = new Conjunto(listA);
             conjuntoB = new Conjunto(listB);
+        }
+
+        // função para validar conjuntos antes das operações
+        private bool VerificarConjuntos(bool precisaA, bool precisaB, out List<int> elementosA, out List<int> elementosB)
+        {
+            elementosA = conjuntoA.ObterElementos();
+            elementosB = conjuntoB.ObterElementos();
+
+            bool aVazio = !elementosA.Any();
+            bool bVazio = !elementosB.Any();
+
+            if (precisaA && precisaB && aVazio && bVazio)
+            {
+                MessageBox.Show("Os conjuntos A e B estão vazios.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (precisaA && aVazio)
+            {
+                MessageBox.Show("O conjunto A está vazio.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (precisaB && bVazio)
+            {
+                MessageBox.Show("O conjunto B está vazio.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            return true;
         }
 
 
@@ -79,7 +100,6 @@ namespace WpfConjuntos
                     {
                         txt_numA.Clear();
                     }
-
                     else
                     {
                         MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -104,9 +124,7 @@ namespace WpfConjuntos
         private void btn_randomA_Click(object sender, RoutedEventArgs e)
         {
             conjuntoA.addAleatorios();
-
         }
-
 
         // Conjunto B
         private void btn_addConjuntoB_Click(object sender, RoutedEventArgs e)
@@ -141,7 +159,6 @@ namespace WpfConjuntos
         {
             try
             {
-
                 string entrada = txt_numB.Text.Trim();
 
                 if (string.IsNullOrEmpty(entrada))
@@ -158,7 +175,6 @@ namespace WpfConjuntos
                     {
                         MessageBox.Show(erro, "Erro", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
-
                 }
             }
             catch (Exception ex)
@@ -176,40 +192,41 @@ namespace WpfConjuntos
             txt_Resultado.Text = " ";
         }
 
-
         private void btn_randomB_Click(object sender, RoutedEventArgs e)
         {
             conjuntoB.addAleatorios();
         }
 
-
-
         // Operações
         private void Uniao_Click(object sender, RoutedEventArgs e)
         {
-            var resultado = Operacoes.Uniao(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
-                                        .OrderBy(x => x);
+            if (!VerificarConjuntos(precisaA: true, precisaB: true, out var A, out var B)) return;
+
+            var resultado = Operacoes.Uniao(A, B).OrderBy(x => x);
             txt_Resultado.Text = "A ∪ B \n{" + string.Join(", ", resultado) + "}";
         }
 
         private void Interseccao_Click(object sender, RoutedEventArgs e)
         {
-            var resultado = Operacoes.Interseccao(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
-                                                 .OrderBy(x => x);
+            if (!VerificarConjuntos(precisaA: true, precisaB: true, out var A, out var B)) return;
+
+            var resultado = Operacoes.Interseccao(A, B).OrderBy(x => x);
             txt_Resultado.Text = "A ∩ B \n{" + string.Join(", ", resultado) + "}";
         }
 
         private void DiferencaAB_Click(object sender, RoutedEventArgs e)
         {
-            var resultado = Operacoes.DiferencaAB(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
-                                            .OrderBy(x => x);
+            if (!VerificarConjuntos(precisaA: true, precisaB: false, out var A, out var B)) return;
+
+            var resultado = Operacoes.DiferencaAB(A, B).OrderBy(x => x);
             txt_Resultado.Text = "A - B \n{" + string.Join(", ", resultado) + "}";
         }
 
         private void DiferençaBA_Click(object sender, RoutedEventArgs e)
         {
-            var resultado = Operacoes.DiferencaBA(conjuntoA.ObterElementos(), conjuntoB.ObterElementos())
-                                            .OrderBy(x => x);
+            if (!VerificarConjuntos(precisaA: false, precisaB: true, out var A, out var B)) return;
+
+            var resultado = Operacoes.DiferencaBA(A, B).OrderBy(x => x);
             txt_Resultado.Text = "B - A \n{" + string.Join(", ", resultado) + "}";
         }
 
