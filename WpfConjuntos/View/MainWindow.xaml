@@ -50,7 +50,7 @@
         <Button x:Name="btn_diferencaBA" Content="B - A" HorizontalAlignment="Left" Height="29" Margin="363,415,0,0" VerticalAlignment="Top" Width="38" RenderTransformOrigin="0.08,-0.058" Click="DiferençaBA_Click"/>
 
         <!-- Resultado -->
-        <TextBlock x:Name="txt_Resultado" Height="88" Margin="0,460,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="290" FontSize="16" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Hidden" TextAlignment="Center"/>
+        <TextBlock x:Name="txt_Resultado" Height="111" Margin="0,460,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="290" FontSize="16" HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Hidden" TextAlignment="Center"/>
 
 
 
