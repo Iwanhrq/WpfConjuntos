@@ -6,7 +6,11 @@ Este projeto foi elaborado como parte da disciplina **Qualidade e Teste de Softw
 
 ---
 
-## Sobre o projeto / Funcionalidades
+## Sobre o projeto
+
+A aplicação permite ao usuário inserir dois conjuntos e realizar, de forma prática, operações matemáricas com conjuntos (União, Interseção e Diferenças)
+
+### Funcionalidades
 
 - Inserção e manipulação de elementos nos conjuntos A e B
 - Operações matemáticas:
