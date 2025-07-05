@@ -97,8 +97,9 @@ Durante o desenvolvimento deste projeto, aprendemos a:
 │   ├── Operacoes.cs       # Métodos de união, interseção e diferenças
 │   └── Testes.cs          # Testes funcionais da aplicação
 │
-├── MainWindow.xaml        # Interface gráfica (View)
-├── MainWindow.xaml.cs     # Lógica de interação com o usuário
+├── View/
+│   ├── MainWindow.xaml    # Interface gráfica (View)
+│   └── MainWindow.xaml.cs # Lógica de interação com o usuário
 │
 ├── bin/                   # Saída de compilação
 └── obj/                   # Arquivos temporários do Visual Studio
